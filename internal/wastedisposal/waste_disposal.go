@@ -1,16 +1,16 @@
-package goscawa
+package wastedisposal
 
 import "fmt"
 
 type WasteDisposal struct {
-	id       int64
-	name     string
-	city     string
-	location Location
+	Id       int64
+	Name     string
+	City     string
+	Location Location
 }
 
 func (w WasteDisposal) String() string {
-	return fmt.Sprintf("ID: %d\n NAME: %s\n CITY: %s\n", w.id, w.name, w.city)
+	return fmt.Sprintf("ID: %d\n NAME: %s\n CITY: %s\n", w.Id, w.Name, w.City)
 }
 
 type Location struct {
@@ -22,6 +22,7 @@ func (l Location) String() string {
 	return fmt.Sprintf("Latitude: %f\n Longitude: %f\n", l.Latitude, l.Longitude)
 }
 
+// Define contract for retriving external informations
 type WasteDisposalListRetriever interface {
 	List() []WasteDisposal
 }
@@ -57,9 +58,9 @@ func (s *Service) FindNearest(request FindNearestRequest) FindNearestResponse {
 	candidate := centers[0]
 
 	return FindNearestResponse{
-		Id:       candidate.id,
-		Name:     candidate.name,
-		City:     candidate.city,
-		Location: candidate.location,
+		Id:       candidate.Id,
+		Name:     candidate.Name,
+		City:     candidate.City,
+		Location: candidate.Location,
 	}
 }

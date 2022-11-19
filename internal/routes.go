@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 
+	"adnotanumber.com/goscawa/internal/wastedisposal"
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,14 +15,11 @@ func (s *Server) routes() {
 }
 
 func (s *Server) handleNearest(c *gin.Context) {
-	var req FindNearestRequest
+	var req wastedisposal.FindNearestRequest
 	if c.ShouldBind(&req) == nil {
 		log.Println(req)
 	}
-	rsp := FindNearestResponse{
-		Id:   10,
-		Name: "Chez lui",
-	}
+	rsp := s.wasteDisposalService.FindNearest(req)
 	c.JSON(http.StatusOK, rsp)
 
 }
