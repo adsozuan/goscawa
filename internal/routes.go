@@ -21,5 +21,4 @@ func (s *Server) handleNearest(c *gin.Context) {
 	}
 	rsp := s.wasteDisposalService.FindNearest(req)
 	c.JSON(http.StatusOK, rsp)
-
 }

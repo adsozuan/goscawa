@@ -18,9 +18,9 @@ func NewServer(logger *AppLogger) *Server {
 	s := &Server{}
 	s.logger = logger
 	s.router = gin.Default()
-
 	s.wasteDisposalService = *wastedisposal.NewService(&ademe.FakeAdemeRetriever{})
 	s.routes()
+
 	return s
 }
 
