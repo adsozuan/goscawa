@@ -1,16 +1,20 @@
 package goscawa
 
-import "net/http"
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
 
 type Server struct {
-	router *http.ServeMux
+	router *gin.Engine
 	logger *AppLogger
 }
 
 func NewServer(logger *AppLogger) *Server {
 	s := &Server{}
 	s.logger = logger
-	s.router = http.NewServeMux()
+	s.router = gin.Default()
 	s.routes()
 	return s
 }

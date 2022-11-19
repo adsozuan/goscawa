@@ -1,21 +1,27 @@
 package goscawa
 
 import (
-	"fmt"
+	"log"
 	"net/http"
-	"os"
+
+	"github.com/gin-gonic/gin"
 )
 
 func (s *Server) routes() {
-	s.router.Handle("/", s.handleOla())
+	api := s.router.Group("/api")
+	v1 := api.Group("v1")
+	v1.Handle("POST", "/nearest", s.handleNearest)
 }
 
-func (s *Server) handleOla() http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		hostname, _ := os.Hostname()
-		name := r.FormValue("name")
-		s.logger.Info(fmt.Sprintf("GET / name=%s", name))
-		fmt.Fprintf(w, "Hello %s from %s", name, hostname)
+func (s *Server) handleNearest(c *gin.Context) {
+	var req FindNearestRequest
+	if c.ShouldBind(&req) == nil {
+		log.Println(req)
 	}
+	rsp := FindNearestResponse{
+		Id:   10,
+		Name: "Chez lui",
+	}
+	c.JSON(http.StatusOK, rsp)
 
 }
