@@ -7,8 +7,13 @@ A simple go web api example applying clean architecure for working out Go
 * No surprise
 * Extensible
 
+## Thoughts on Clean Architecture with Go
 
-Largely inspired by Mat Ryer videos on how he writes web API and Clean Architecture principles practices gathered along my career.
+Implementing Clean Architecture in Go is a different story than in other OOP language such as Java and C#.
+I've been inspired by [Mat Ryer videos on how he writes web API](https://www.youtube.com/watch?v=8TLiGHJTlig) and by reading [SOLID Design from Dave Cheney](https://dave.cheney.net/2016/08/20/solid-go-design).
+
+The principal idea is to build on Interfaces and package level visibility to have a flat and simple layout, and not beeing explicit with Adapters, Controller, Ports and etc (I took this route, and it was not pleasant :/).
+
 
 ## Specification and domain
 
